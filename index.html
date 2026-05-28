@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Clicker PRO - Keys</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .card {
+            background: #111111;
+            border: 1px solid #333333;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #00ff88;
+            color: #000000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #888888;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .key-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .key-item {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .key-item:hover {
+            border-color: #ff8800;
+        }
+
+        .key-item.free {
+            border-left: 3px solid #ff8800;
+        }
+
+        .key-item.premium {
+            border-left: 3px solid #00ff88;
+        }
+
+        .key-info {
+            text-align: left;
+        }
+
+        .key-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .key-cps {
+            font-size: 12px;
+        }
+
+        .key-cps.free-color {
+            color: #ff8800;
+        }
+
+        .key-cps.premium-color {
+            color: #00ff88;
+        }
+
+        .key-duration {
+            color: #888888;
+            font-size: 11px;
+        }
+
+        .key-value {
+            background: #0a0a0a;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            padding: 5px 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .key-value:hover {
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        .copied {
+            color: #00ff88;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .pricing-table {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .plan {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .plan:hover {
+            border-color: #00ff88;
+            transform: translateY(-2px);
+        }
+
+        .plan.featured {
+            border-color: #00ff88;
+            background: #0d2818;
+        }
+
+        .plan.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .plan.locked:hover {
+            border-color: #333333;
+            transform: none;
+        }
+
+        .plan-info {
+            text-align: left;
+        }
+
+        .plan-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .plan-cps {
+            color: #00ff88;
+            font-size: 14px;
+        }
+
+        .plan-duration {
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .plan-price {
+            text-align: right;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .price-old {
+            font-size: 14px;
+            color: #888888;
+            text-decoration: line-through;
+        }
+
+        .price-locked {
+            font-size: 14px;
+            color: #888888;
+        }
+
+        .buy-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-telegram {
+            background: #0088cc;
+            color: #ffffff;
+        }
+
+        .btn-telegram:hover {
+            background: #006699;
+        }
+
+        .icon {
+            font-size: 18px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            text-align: center;
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #333333;
+            margin: 25px 0;
+        }
+
+        .footer {
+            color: #555555;
+            font-size: 11px;
+        }
+
+        .footer a {
+            color: #00ff88;
+            text-decoration: none;
+        }
+
+        @media (max-width: 480px) {
+            .buy-buttons {
+                flex-direction: column;
+            }
+            
+            .plan {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .plan-info, .plan-price {
+                text-align: center;
+            }
+
+            .key-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .key-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="logo">Auto Clicker</div>
+            <div class="badge">KEYS</div>
+            <div class="title">Activation Keys</div>
+            <div class="subtitle">
+                Free and Premium license keys.<br>
+                Click on key to copy.
+            </div>
+
+            <div class="section-title">FREE KEYS</div>
+            <div class="key-list">
+                <div class="key-item free" onclick="copyKey('Free2025', this)">
+                    <div class="key-info">
+                        <div class="key-name">Free Version+</div>
+                        <div class="key-cps free-color">100 CPS Limit</div>
+                        <div class="key-duration">Unlimited time</div>
+                    </div>
+                    <div class="key-value">Free2025</div>
+                    <div class="copied">Copied!</div>
+                </div>
+
+                <div class="key-item free" onclick="copyKey('Free2026', this)">
+                    <div class="key-info">
+                        <div class="key-name">Free Version</div>
+                        <div class="key-cps free-color">60 CPS Limit</div>
+                        <div class="key-duration">Unlimited time</div>
+                    </div>
+                    <div class="key-value">Free2026</div>
+                    <div class="copied">Copied!</div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="section-title">PREMIUM PLANS</div>
+            <div class="pricing-table">
+                <div class="plan">
+                    <div class="plan-info">
+                        <div class="plan-name">Premium 5 Days</div>
+                        <div class="plan-cps">Unlimited CPS</div>
+                        <div class="plan-duration">5 days access</div>
+                    </div>
+                    <div class="plan-price">
+                        <div class="price">$0.1</div>
+                    </div>
+                </div>
+
+                <div class="plan featured">
+                    <div class="plan-info">
+                        <div class="plan-name">Premium 30 Days</div>
+                        <div class="plan-cps">Unlimited CPS</div>
+                        <div class="plan-duration">30 days access</div>
+                    </div>
+                    <div class="plan-price">
+                        <div class="price">$1</div>
+                        <div class="price-old">$40</div>
+                    </div>
+                </div>
+
+                <div class="plan">
+                    <div class="plan-info">
+                        <div class="plan-name">Premium Unlimited</div>
+                        <div class="plan-cps">Unlimited CPS</div>
+                        <div class="plan-duration">Forever access</div>
+                    </div>
+                    <div class="plan-price">
+                        <div class="price">$2</div>
+                        <div class="price-old">$100</div>
+                    </div>
+                </div>
+
+                <div class="plan locked">
+                    <div class="plan-info">
+                        <div class="plan-name">Beta</div>
+                        <div class="plan-cps">Unlimited CPS</div>
+                        <div class="plan-duration">Forever + Updates</div>
+                    </div>
+                    <div class="plan-price">
+                        <div class="price-locked">Not for sale</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buy-buttons">
+                <a href="https://yourusername.github.io/autoclicker" class="btn btn-telegram" target="_blank">
+                    <span class="icon"></span> BUY Telegram DONT WORK
+                </a>
+            </div>
+
+            <hr class="divider">
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <div>No CPS Limit</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <div>Secure Key</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <div>Support 24/7</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <div>Free Updates</div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="footer">
+                After payment send screenshot to <a href="https://t.me/yourusername">Telegram</a><br>
+                and get your activation key immediately.<br><br>
+                2025 Auto Clicker PRO. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyKey(key, element) {
+            navigator.clipboard.writeText(key).then(() => {
+                const copiedText = element.querySelector('.copied');
+                copiedText.style.display = 'block';
+                
+                setTimeout(() => {
+                    copiedText.style.display = 'none';
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
